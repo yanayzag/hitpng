@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון לראיון סטודנטים - ארגון פר״ח</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, label {
+            color: #4B0082; /* סגול כהה */
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"], 
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .checkbox-label input {
+            margin-left: 5px;
+        }
+        button {
+            background-color: #4B0082;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #3a0066;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .result-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 500px;
+            width: 80%;
+        }
+        .green-text {
+            color: green;
+            font-weight: bold;
+        }
+        .yellow-text {
+            color: #b8860b;
+            font-weight: bold;
+        }
+        .red-text {
+            color: red;
+            font-weight: bold;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            border-right: 4px solid #4B0082;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            .print-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>שאלון לראיון סטודנטים - ארגון פר״ח</h1>
+    
+    <div class="instructions no-print">
+        <h2>הנחיות לרכז/ת:</h2>
+        <p>שאלון זה נועד למילוי על-ידך במהלך ראיון עם סטודנט/ית. יש למלא את כל השדות בהתאם לתשובות המרואיין/ת.</p>
+        <p>בסיום הראיון לחץ/י על כפתור "שמור וסווג" כדי לקבל את הסיווג האוטומטי של המרואיין/ת לפי קוד הרמזור:</p>
+        <ul>
+            <li><span class="green-text">ירוק</span> - סטודנט/ית גמיש/ה מבחינת לו"ז, מתאים/ה לחונכות לכל ילד</li>
+            <li><span class="yellow-text">צהוב</span> - סטודנט/ית בעל/ת מעט גמישות, מתאים/ה לילד/ה גמיש/ה יותר מבחינת לו"ז</li>
+            <li><span class="red-text">אדום</span> - סטודנט/ית לא גמיש/ה עם לו"ז צפוף, מתאים/ה לחניך/ה גמיש/ה מאוד או לחונכות בוקר</li>
+        </ul>
+    </div>
+
+    <form id="interviewForm">
+        <div class="form-group">
+            <label for="name">שם:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="id">תעודת זהות:</label>
+            <input type="text" id="id" name="id" required>
+        </div>
+
+        <div class="form-group">
+            <label>תואר:</label>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="radio" name="degree" value="ראשון" required> ראשון
+                </label>
+                <label class="checkbox-label">
+                    <input type="radio" name="degree" value="שני"> שני
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="institution">מוסד לימודים:</label>
+            <input type="text" id="institution" name="institution" required>
+        </div>
+
+        <div class="form-group">
+            <label>שנת לימוד:</label>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="radio" name="studyYear" value="א" required> א
+                </label>
+                <label class="checkbox-label">
+                    <input type="radio" name="studyYear" value="ב"> ב
+                </label>
+                <label class="checkbox-label">
+                    <input type="radio" name="studyYear" value="ג"> ג
+                </label>
+                <label class="checkbox-label">
+                    <input type="radio" name="studyYear" value="ד"> ד
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="studyDays">מספר ימי לימודים:</label>
+            <select id="studyDays" name="studyDays" required>
+                <option value="" disabled selected>בחר/י מספר</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>ימי התנדבות מועדפים:</label>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="volunteerDays" value="ראשון"> ראשון
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="volunteerDays" value="שני"> שני
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="volunteerDays" value="שלישי"> שלישי
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="volunteerDays" value="רביעי"> רביעי
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="volunteerDays" value="חמישי"> חמישי
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>שעות התנדבות:</label>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="radio" name="volunteerHours" value="בוקר" required> בוקר (8:00-15:00)
+                </label>
+                <label class="checkbox-label">
+                    <input type="radio" name="volunteerHours" value="אחה״צ"> אחר הצהריים (16:00-19:00)
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>ניסיון עם ילדים:</label>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="radio" name="experience" value="קיים" required onclick="toggleExperienceDetails(true)"> קיים
+                </label>
+                <label class="checkbox-label">
+                    <input type="radio" name="experience" value="לא קיים" onclick="toggleExperienceDetails(false)"> לא קיים
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group" id="experienceDetailsGroup">
+            <label for="experienceDetails">במידה וקיים פירוט:</label>
+            <input type="text" id="experienceDetails" name="experienceDetails">
+        </div>
+
+        <div class="button-group no-print">
+            <button type="button" onclick="classifyStudent()">שמור וסווג</button>
+        </div>
+    </form>
+
+    <!-- אזור להצגת סיכום הטופס עבור הדפסה -->
+    <div id="printSummary" class="hidden print-section">
+        <h2>סיכום ראיון - ארגון פר״ח</h2>
+        <div id="summaryContent"></div>
+    </div>
+
+    <div id="resultModal" class="result-modal hidden no-print">
+        <div class="modal-content">
+            <h2>תוצאות הסיווג</h2>
+            <p id="classificationResult"></p>
+            <div class="button-group">
+                <button onclick="saveAndPrint()">שמור והדפס</button>
+                <button onclick="resetForm()">סגור ומלא טופס חדש</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // משתנים גלובליים לאחסון מידע הסיווג
+        let currentClassification = '';
+        let currentColorClass = '';
+
+        // וודא שהחלונית מוסתרת בתחילת טעינת הדף
+        window.onload = function() {
+            document.getElementById('resultModal').classList.add('hidden');
+            toggleExperienceDetails(false);
+        }
+
+        function toggleExperienceDetails(show) {
+            const detailsGroup = document.getElementById('experienceDetailsGroup');
+            if (show) {
+                detailsGroup.style.display = 'block';
+            } else {
+                detailsGroup.style.display = 'none';
+                document.getElementById('experienceDetails').value = '';
+            }
+        }
+
+        function classifyStudent() {
+            // בדיקת תקינות הטופס
+            const form = document.getElementById('interviewForm');
+            const inputs = form.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value) {
+                    isValid = false;
+                }
+            });
+
+            // בדיקה שנבחר לפחות יום התנדבות אחד
+            const volunteerDays = document.querySelectorAll('input[name="volunteerDays"]:checked');
+            if (volunteerDays.length === 0) {
+                isValid = false;
+                alert('יש לבחור לפחות יום התנדבות אחד');
+                return;
+            }
+
+            if (!isValid) {
+                alert('יש למלא את כל השדות החובה');
+                return;
+            }
+
+            // אלגוריתם סיווג הסטודנט - גרסה מעודכנת
+            const degree = document.querySelector('input[name="degree"]:checked').value;
+            const studyYear = document.querySelector('input[name="studyYear"]:checked').value;
+            const studyDays = parseInt(document.getElementById('studyDays').value);
+            const volunteerDaysCount = volunteerDays.length;
+            
+            // הכנת רשימת ימי התנדבות לתצוגה בסיכום
+            let selectedDays = [];
+            volunteerDays.forEach(day => {
+                selectedDays.push(day.value);
+            });
+
+            // סיווג לפי הקריטריונים המעודכנים
+            if (degree === 'ראשון') {
+                if (studyYear === 'א' || studyYear === 'ב') {
+                    // סטודנט לתואר ראשון בשנה א' או ב'
+                    if (studyDays >= 3) {
+                        currentClassification = 'אדום';
+                        currentColorClass = 'red-text';
+                    } else {
+                        currentClassification = 'צהוב';
+                        currentColorClass = 'yellow-text';
+                    }
+                } else {
+                    // סטודנט לתואר ראשון בשנה ג' או ד'
+                    if (volunteerDaysCount === 1) {
+                        currentClassification = 'אדום';
+                        currentColorClass = 'red-text';
+                    } else if (volunteerDaysCount === 2) {
+                        currentClassification = 'צהוב';
+                        currentColorClass = 'yellow-text';
+                    } else { // 3 ומעלה
+                        currentClassification = 'ירוק';
+                        currentColorClass = 'green-text';
+                    }
+                }
+            } else {
+                // סטודנט לתואר שני - סיווג לפי ימי התנדבות בלבד
+                if (volunteerDaysCount === 1) {
+                    currentClassification = 'אדום';
+                    currentColorClass = 'red-text';
+                } else if (volunteerDaysCount === 2) {
+                    currentClassification = 'צהוב';
+                    currentColorClass = 'yellow-text';
+                } else { // 3 ומעלה
+                    currentClassification = 'ירוק';
+                    currentColorClass = 'green-text';
+                }
+            }
+
+            // הכנת הסיכום להדפסה
+            const name = document.getElementById('name').value;
+            const id = document.getElementById('id').value;
+            const institution = document.getElementById('institution').value;
+            const volunteerHours = document.querySelector('input[name="volunteerHours"]:checked').value;
+            const experience = document.querySelector('input[name="experience"]:checked').value;
+            const experienceDetails = document.getElementById('experienceDetails').value || 'אין פירוט';
+
+            let summaryHTML = `
+                <table style="width:100%; border-collapse: collapse; margin-top: 20px;">
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">שם:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${name}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">תעודת זהות:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${id}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">תואר:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${degree}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">מוסד לימודים:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${institution}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">שנת לימוד:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${studyYear}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">מספר ימי לימודים:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${studyDays}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">ימי התנדבות מועדפים:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${selectedDays.join(', ')}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">שעות התנדבות:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${volunteerHours === 'בוקר' ? 'בוקר (8:00-15:00)' : 'אחר הצהריים (16:00-19:00)'}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">ניסיון עם ילדים:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${experience}</td>
+                    </tr>
+                    ${experience === 'קיים' ? `
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">פירוט ניסיון:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">${experienceDetails}</td>
+                    </tr>
+                    ` : ''}
+                    <tr>
+                        <td style="font-weight: bold; padding: 8px; border: 1px solid #ddd;">סיווג:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; color: ${currentColorClass === 'red-text' ? 'red' : currentColorClass === 'yellow-text' ? '#b8860b' : 'green'}; font-weight: bold;">${currentClassification}</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 20px; text-align: center; font-style: italic;">תאריך הראיון: ${new Date().toLocaleDateString('he-IL')}</p>
+            `;
+
+            document.getElementById('summaryContent').innerHTML = summaryHTML;
+
+            // הצגת התוצאה בחלונית
+            document.getElementById('classificationResult').innerHTML = 
+                `השלמת את הראיון! לאור הנתונים שמילאת ניתן לסווג את הסטודנט/ית הנ"ל בצבע ה<span class="${currentColorClass}">${currentClassification}</span>`;
+            
+            document.getElementById('resultModal').classList.remove('hidden');
+        }
+
+        function saveAndPrint() {
+            // הצג את אזור הסיכום להדפסה
+            document.getElementById('printSummary').classList.remove('hidden');
+            
+            // מסתיר את שאר האלמנטים בדף
+            document.getElementById('interviewForm').classList.add('hidden');
+            document.getElementById('resultModal').classList.add('hidden');
+            
+            // מפעיל את חלון ההדפסה של הדפדפן
+            setTimeout(function() {
+                window.print();
+                
+                // אחרי ההדפסה, הסתר את הסיכום ואפס את הטופס
+                document.getElementById('printSummary').classList.add('hidden');
+                document.getElementById('interviewForm').classList.remove('hidden');
+                resetForm();
+            }, 500);
+        }
+
+        function resetForm() {
+            // סגירת המודל
+            document.getElementById('resultModal').classList.add('hidden');
+            
+            // איפוס הטופס
+            document.getElementById('interviewForm').reset();
+            
+            // הסתרת שדה פירוט הניסיון
+            toggleExperienceDetails(false);
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
