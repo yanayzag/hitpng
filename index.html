@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מטלת חווית למידה- מיקרו</title>
+  <style>
+    body {
+      direction: rtl;
+      font-family: Arial, sans-serif;
+      background-color: #e6f5e6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #cceccc;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header h2 {
+      margin: 0.5rem 0 0;
+      font-size: 1.5rem;
+    }
+
+    header h3 {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      font-weight: normal;
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .project {
+      background-color: #f0fff0;
+      border: 1px solid #b2d8b2;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .project img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .project img:hover {
+      transform: scale(1.05);
+    }
+
+    .project h4 {
+      margin: 1rem 0 0.5rem;
+    }
+
+    .project p {
+      margin: 0.5rem 0;
+    }
+
+    .project button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #a3d9a5;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .project button:hover {
+      background-color: #8bd88b;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal img {
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      margin: 5% auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body id="top">
+  <header style="background-color: #cceccc; padding: 2rem; text-align: center; width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+    <h1>מטלת חווית למידה- מיקרו</h1>
+    <h2>קורס עיצוב חווית למידה מבוססת GenAI</h2>
+    <h3>מרצה: ינאי זגורי, הפקולטה לטכנולוגיות למידה, המכון הטכנולוגי חולון HIT</h3>
+  
+  <section style="background-color: #d0f0d0; padding: 1rem; text-align: center; font-weight: bold; color: #994c00;">
+    לחצו על התמונות כדי להגדיל את תהליך העבודה | <a href="#task-rules" style="color: #994c00; text-decoration: underline; font-weight: normal;">חוקי המטלה</a>
+  </section>
+
+  <div class="projects-container">
+    <div class="project">
+      <h4>פרח- טופס אינטראקטיבי</h4>
+      <p>עדי ולדיסלבובסקי  ואנה אשכנזי</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/tosite_1.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/tosite_1.png')">
+      <br>
+      <button onclick="window.open('https://github.com/yanayzag/hitpng/blob/main/perach-interview-form-final%20(1).html', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>שאלון בינה מלאכותית</h4>
+      <p>אימאן אלסטל ואליאגוב אמבר</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2014.41.06.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2014.41.06.png')">
+      <br>
+      <button onclick="window.open('https://drive.google.com/file/d/1fvFdanUiXjAVAnD8IfmtTEyKl4WZ6dfy/view?usp=sharing', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>מצגת מערך שיעור למורה לספרות</h4>
+      <p>חן הלל</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%AA%D7%95%D7%A6%D7%A8%20%D7%9E%D7%99%D7%A7%D7%A8%D7%95-%20%D7%97%D7%9F%20%D7%94%D7%9C%D7%9C.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%AA%D7%95%D7%A6%D7%A8%20%D7%9E%D7%99%D7%A7%D7%A8%D7%95-%20%D7%97%D7%9F%20%D7%94%D7%9C%D7%9C.png')">
+      <br>
+      <button onclick="window.open('https://docs.google.com/presentation/d/10flDWYI26eD41EGRP4FVKesAmsGKHSvt/edit?usp=drivesdk&ouid=105426534848800386496&rtpof=true&sd=true', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>לומדת בינה מלאכותית למגזר הציבורי</h4>
+      <p>נועה בן אליעזר, שיר רוזנפלד ושלי איתן</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2016.42.33.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2016.42.33.png')">
+      <br>
+      <button onclick="window.open('https://360.articulate.com/review/content/dcddf288-c324-4332-b209-93a924202fcc/review', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>איך לדבר עם הכלב שלך?</h4>
+      <p>גל מלול ונועה זאבי דגן</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%98%D7%9C%D7%94%201%20%D7%A0%D7%95%D7%A2%D7%94%20%D7%95%D7%92%D7%9C.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%98%D7%9C%D7%94%201%20%D7%A0%D7%95%D7%A2%D7%94%20%D7%95%D7%92%D7%9C.png')">
+      <br>
+      <button onclick="window.open('https://drive.google.com/file/d/1jBs-zVxlD_4eo5W4V4kBpeQW8a8-UDjk/view?usp=drive_link', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>קליטה מהירה- משחק כניסה לארגון</h4>
+      <p>שי טישלר יפה טום בונק בקרוביץ</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%94%D7%92%D7%A9%D7%94%20-%20%D7%9E%D7%98%D7%9C%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%201.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%94%D7%92%D7%A9%D7%94%20-%20%D7%9E%D7%98%D7%9C%D7%94%20%D7%9E%D7%A1%D7%A4%D7%A8%201.png')">
+      <br>
+      <button onclick="window.open('https://app---20f71d34.base44.app/', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>דף נחיתה- מחקר בוט לניהול זמן</h4>
+      <p>עדי דרור ונועה בדיחי קלפוס</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/PPT_Landing%20page.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/PPT_Landing%20page.png')">
+      <br>
+      <button onclick="window.open('https://app--task-wave-8639640e.base44.app/', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>פודקאסט- ּוֹטְסָלֶה</h4>
+      <p>דוניא זועבי סלימאן</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%A6%D7%92%D7%AA%20%D7%94%D7%92%D7%A9%D7%AA%20%D7%AA%D7%95%D7%A6%D7%A8%20-%20%D7%93%D7%95%D7%A0%D7%99%D7%90%20%D7%96%D7%95%D7%A2%D7%91%D7%99%20%D7%A1%D7%9C%D7%99%D7%9E%D7%90%D7%9F.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%A6%D7%92%D7%AA%20%D7%94%D7%92%D7%A9%D7%AA%20%D7%AA%D7%95%D7%A6%D7%A8%20-%20%D7%93%D7%95%D7%A0%D7%99%D7%90%20%D7%96%D7%95%D7%A2%D7%91%D7%99%20%D7%A1%D7%9C%D7%99%D7%9E%D7%90%D7%9F.png')">
+      <br>
+      <button onclick="window.open('https://youtu.be/uUcW1TKm9Fg', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>סרטון חזרה לבגרות בלשון בנושא בניינים</h4>
+      <p>טל בן קימון ויובל שריקי</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%A6%D7%92%D7%AA%20%D7%9C%D7%94%D7%92%D7%A9%D7%94%20%D7%99%D7%95%D7%91%D7%9C%20%D7%95%D7%98%D7%9C.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%A6%D7%92%D7%AA%20%D7%9C%D7%94%D7%92%D7%A9%D7%94%20%D7%99%D7%95%D7%91%D7%9C%20%D7%95%D7%98%D7%9C.png')">
+      <br>
+      <button onclick="window.open('https://share.vidnoz.com/aivideo?id=aishare-XRYh26KyvLAZkmc4hpu7lN5t174430580111846162', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>סרטון ארבע ההסכמות</h4>
+      <p>מילנה פרנקו ורעות ארז</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2017.11.43.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2017.11.43.png')">
+      <br>
+      <button onclick="window.open('https://drive.google.com/file/d/1K7szrHVT9WpoMB2Z6pqJjfMnsasdpHN1/view?usp=sharing', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="project">
+      <h4>Past Simple exercise and listening comprehension for 7th grade ESL students</h4>
+      <p>אנטון בונין שמעון</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%99%D7%A7%D7%A8%D7%95%20%D7%99%D7%97%D7%99%D7%93%D7%94%20%D7%9C%D7%94%D7%92%D7%A9%D7%94%20-%20%D7%90%D7%A0%D7%98%D7%95%D7%9F%20%D7%91%D7%95%D7%A0%D7%99%D7%9F%20%D7%A9%D7%9E%D7%A2%D7%95%D7%9F.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%99%D7%A7%D7%A8%D7%95%20%D7%99%D7%97%D7%99%D7%93%D7%94%20%D7%9C%D7%94%D7%92%D7%A9%D7%94%20-%20%D7%90%D7%A0%D7%98%D7%95%D7%9F%20%D7%91%D7%95%D7%A0%D7%99%D7%9F%20%D7%A9%D7%9E%D7%A2%D7%95%D7%9F.png')">
+      <br>
+      <button onclick="window.open('https://guileless-trifle-265ffa.netlify.app/', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>Welcome to Freediver’s Journey</h4>
+      <p>יערית גולדפרב-צנחני</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%99%D7%A2%D7%A8%D7%99%D7%AA%20%D7%92%D7%95%D7%9C%D7%93%D7%A4%D7%A8%D7%91-%D7%A6%D7%A0%D7%97%D7%A0%D7%99-%D7%9E%D7%A6%D7%92%D7%AA%20%D7%9C%D7%94%D7%92%D7%A9%D7%94.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%99%D7%A2%D7%A8%D7%99%D7%AA%20%D7%92%D7%95%D7%9C%D7%93%D7%A4%D7%A8%D7%91-%D7%A6%D7%A0%D7%97%D7%A0%D7%99-%D7%9E%D7%A6%D7%92%D7%AA%20%D7%9C%D7%94%D7%92%D7%A9%D7%94.png')">
+      <br>
+      <button onclick="window.open('https://view.genially.com/67f3f1bf2343d296ed529bfe/presentation-text-button', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>צלילה לעומק</h4>
+      <p>דקל בן טל ועוז חדד</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%A6%D7%9C%D7%99%D7%9C%D7%94%20%D7%9C%D7%A2%D7%95%D7%9E%D7%A7%20%D7%93%D7%A7%D7%9C%20%D7%91%D7%9F%20%D7%98%D7%9C%20%D7%95%D7%A2%D7%95%D7%96%20%D7%97%D7%93%D7%93.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%A6%D7%9C%D7%99%D7%9C%D7%94%20%D7%9C%D7%A2%D7%95%D7%9E%D7%A7%20%D7%93%D7%A7%D7%9C%20%D7%91%D7%9F%20%D7%98%D7%9C%20%D7%95%D7%A2%D7%95%D7%96%20%D7%97%D7%93%D7%93.png')">
+      <br>
+      <button onclick="window.open('https://share.vidnoz.com/aivideo?id=aishare-4f6nUrHvecdDvdwOhYWvUHuv174375012211829803', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>סרטון הדרכה להורדת קוד QR  בתוכנת קנבה</h4>
+      <p>רעות דובקין  ורני ניסן</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%A6%D7%92%D7%AA%20%D7%94%D7%A1%D7%91%D7%A8.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%A6%D7%92%D7%AA%20%D7%94%D7%A1%D7%91%D7%A8.png')">
+      <br>
+      <button onclick="window.open('https://drive.google.com/file/d/1zCT6NigfSlcWJPlrw-cEZsu1eXnUxzpa/view?usp=drive_link', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>Blender 3d quiz</h4>
+      <p>אליה אוטוצקין</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2017.15.08.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2017.15.08.png')">
+      <br>
+      <button onclick="window.open('https://editor.p5js.org/eliautochkin/full/6aht0PDFN', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>מצגת מתכון לעוגה כשרה לפסח</h4>
+      <p>אנה אברמנקו</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%A6%D7%92%D7%AA%20%D7%94%D7%92%D7%A9%D7%94%20%D7%A9%D7%9C%20%D7%AA%D7%95%D7%A6%D7%A8%20%D7%9C%D7%9E%D7%99%D7%93%D7%94.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/%D7%9E%D7%A6%D7%92%D7%AA%20%D7%94%D7%92%D7%A9%D7%94%20%D7%A9%D7%9C%20%D7%AA%D7%95%D7%A6%D7%A8%20%D7%9C%D7%9E%D7%99%D7%93%D7%94.png')">
+      <br>
+      <button onclick="window.open('https://docs.google.com/presentation/d/1AoknZYBVJz_nOAZQZrFi-j1TD2c6d5mQpmD1ScjXHks/edit?usp=sharing', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>Meet & Speak</h4>
+      <p>עדי לוי אטיאס, זוהרה בן אור, שרון הראל בן עזרא</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2017.25.04.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2017.25.04.png')">
+      <br>
+      <button onclick="window.open('https://game.tiiny.site', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <div class="project">
+      <h4>HebrewRussianBridge</h4>
+      <p>הילה אורבך פריג וקרן סלייפר</p>
+      <img src="https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2017.31.03.png" alt="תמונה של הפרויקט" onclick="openModal('https://github.com/yanayzag/hitpng/raw/main/Screenshot%202025-04-19%20at%2017.31.03.png')">
+      <br>
+      <button onclick="window.open('https://hila1980.github.io/HebrewRussianBridge1/', '_blank')">צפייה בתוצר</button>
+    </div>
+
+    <!-- ניתן להוסיף כאן עבודות נוספות -->
+  </div>
+
+  <div class="modal" id="imgModal" onclick="this.style.display='none'">
+    <img id="modalImage" src="" alt="הגדלת תמונה">
+  </div>
+
+  <script>
+    function openModal(src) {
+      document.getElementById('modalImage').src = src;
+      document.getElementById('imgModal').style.display = 'block';
+    }
+  </script>
+<div id="task-rules" style="text-align: center; font-size: 1rem; font-weight: normal; padding: 2rem; color: #333; font-family: Arial, sans-serif;">
+  חוקי המטלה: פיתוח תוצר מיקו בעזרת בינה מלאכותית, אשר כולל לפחות 2 כלי בינה מלאכותית שונים, תוך שימוש בגישת ה Input Output.<br>
+  במידת הצורך יש לשלב כלים מסורתיים, אבל לפחות 80% מהתוצר חייב להיות נכתב ומפוק על ידי בינה מלאכותית
+</div>
+
+<a href="#top" style="position: fixed; bottom: 20px; left: 20px; background-color: #a3d9a5; color: #333; padding: 10px 15px; border-radius: 50%; text-decoration: none; font-size: 1.5rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">↑</a>
+</body>
+</html>
